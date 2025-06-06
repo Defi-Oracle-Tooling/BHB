@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "dependencies": {
+    "@azure/msal-node": "^2.16.2",
+    "@azure/search-documents": "^12.1.0",
+    "@azure/service-bus": "^7.9.5",
+    "@azure/storage-blob": "^12.27.0",
+    "express-rate-limit": "^7.5.0",
+    "mongodb": "^6.17.0",
+    "node-cron": "^4.1.0",
+    "nodemailer": "^7.0.3",
+    "passport": "^0.7.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "packageManager": "pnpm@10.11.1+sha512.e519b9f7639869dc8d5c3c5dfef73b3f091094b0a006d7317353c72b124e80e1afd429732e28705ad6bfa1ee879c1fce46c128ccebd3192101f43dd67c667912",
+  "scripts": {
+    "start": "node scripts/api.js",
+    "worker": "node scripts/queue_worker.js",
+    "dev": "nodemon scripts/api.js",
+    "lint": "eslint .",
+    "test": "echo \"No tests specified\" && exit 0",
+    "build": "echo \"No build step required\""
+  }
+}

@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+logs
+.git
+.vscode
+.DS_Store
+.env
+coverage
+*.log
+*.tsbuildinfo
+.idea
+*.swp
+*.swo
+*.bak
+*.tmp
+.env.*
+README_API.md
