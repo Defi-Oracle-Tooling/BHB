@@ -1,3 +1,4 @@
+import { upsertRepoToSearch } from "./azure_search.js";
 // Modular repo indexer for CLI and API use
 import { AzureOpenAI } from "openai";
 import fs from "fs/promises";
@@ -119,6 +120,24 @@ export async function processRepo(repo) {
       embedding = embResp.data[0].embedding;
     } catch (embErr) {
       await logError(`Embedding error for ${org}/${name}: ${embErr}`);
+    }
+    // --- Upsert to Azure Cognitive Search ---
+    try {
+      await upsertRepoToSearch({
+        id: `${org}_${name}`,
+        org,
+        repo: name,
+        summary,
+        tags,
+        embedding,
+        primaryLanguage: primaryLanguage ? primaryLanguage.name : null,
+        updatedAt,
+        license: licenseInfo ? licenseInfo.spdxId : null,
+        url,
+        indexedAt: new Date().toISOString()
+      });
+    } catch (searchErr) {
+      await logError(`Azure Search upsert error for ${org}/${name}: ${searchErr}`);
     }
     return {
       org,
